@@ -33,46 +33,46 @@ function addGo(e) {
     //эта конструкция для чередования элементов
     go = go === "circle" ? "cross" : "circle";
 
-    infoDisplay.textContent = "Ты поставил " + go ;
+    infoDisplay.textContent = "сейчас  " + go +" идет";
 
     //это что бы нельзя было несколько обьектов в одну ячейку засунуть
-    e.target.removeEventListener("click",addGo);
-    
+    e.target.removeEventListener("click", addGo);
+
     //проверка при каждом действии на победу
     checkScore();
 }
 
-function checkScore(){
+function checkScore() {
     //получаем все квадратики
     const allSquares = document.querySelectorAll('.square');
     //победные комбинации
     const winningCombos = [
-        [0,1,2],[3,4,5,],[6,7,8],
-        [0,3,6],[1,4,7],[2,5,8],
-        [0,4,8],[2,4,6]
+        [0, 1, 2], [3, 4, 5,], [6, 7, 8],
+        [0, 3, 6], [1, 4, 7], [2, 5, 8],
+        [0, 4, 8], [2, 4, 6]
     ];
     //проверочка для нолика
-    winningCombos.forEach(array =>{
+    winningCombos.forEach(array => {
         // здесь рассматривается каждый элемент выигрышной позиции и сравнивается с классом круг
         const circleWins = array.every(cell => allSquares[cell].firstChild?.classList.contains('circle'));//если все дочерние элементы содержат класс круг 
         //этот if срабатывает если выигрышная позиция найдена и вернулось true
-        if(circleWins){
+        if (circleWins) {
             infoDisplay.textContent = "Кружочки вин!";
             //удаление для каждоко квадрата через костыль ))) тут мы копируем старый и вставляем его же но уже без фонкции клика)))
             allSquares.forEach(square => square.replaceWith(square.cloneNode(true)));
-        return;
+            return;
         }
     })
     //проверочка для крестика
-    winningCombos.forEach(array =>{
-         // здесь рассматривается каждый элемент выигрышной позиции и сравнивается с классом крестик
+    winningCombos.forEach(array => {
+        // здесь рассматривается каждый элемент выигрышной позиции и сравнивается с классом крестик
         const crossWins = array.every(cell => allSquares[cell].firstChild?.classList.contains('cross'));
-      //этот if срабатывает если выигрышная позиция найдена и вернулось true
-        if(crossWins){
+        //этот if срабатывает если выигрышная позиция найдена и вернулось true
+        if (crossWins) {
             infoDisplay.textContent = "Крестики вин!";
-             //удаление для каждоко квадрата через костыль ))) тут мы копируем старый и вставляем его же но уже без фонкции клика)))
+            //удаление для каждоко квадрата через костыль ))) тут мы копируем старый и вставляем его же но уже без фонкции клика)))
             allSquares.forEach(square => square.replaceWith(square.cloneNode(true)));
-        return;
+            return;
         }
     })
 }
