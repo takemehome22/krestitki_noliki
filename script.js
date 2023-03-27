@@ -2,6 +2,10 @@
 const gameBoard = document.querySelector("#gameboard");
 //текст
 const infoDisplay = document.querySelector("#info");
+let crossDraw=0;
+let circleDraw=0;
+let rand=0;
+let id;
 //все квадратики
 const startCells = [
     "", "", "", "", "", "", "", "", "",
@@ -51,6 +55,9 @@ function checkScore() {
         [0, 3, 6], [1, 4, 7], [2, 5, 8],
         [0, 4, 8], [2, 4, 6]
     ];
+
+
+
     //проверочка для нолика
     winningCombos.forEach(array => {
         // здесь рассматривается каждый элемент выигрышной позиции и сравнивается с классом круг
@@ -61,6 +68,8 @@ function checkScore() {
             //удаление для каждоко квадрата через костыль ))) тут мы копируем старый и вставляем его же но уже без фонкции клика)))
             allSquares.forEach(square => square.replaceWith(square.cloneNode(true)));
             return;
+        }else{
+            circleDraw++;
         }
     })
     //проверочка для крестика
@@ -73,6 +82,11 @@ function checkScore() {
             //удаление для каждоко квадрата через костыль ))) тут мы копируем старый и вставляем его же но уже без фонкции клика)))
             allSquares.forEach(square => square.replaceWith(square.cloneNode(true)));
             return;
+        }else{
+            crossDraw++;
         }
     })
+    if(crossDraw==72 && circleDraw==72){
+        infoDisplay.textContent = "Ничья";
+    }
 }

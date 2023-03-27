@@ -6,6 +6,14 @@ body {
     align-items: center;
     height: 100vh;
     flex-direction: column;
+    background: linear-gradient(to top, lime, cyan);
+    /* background-image: repeating-radial-gradient(red, yellow 10%, green 15%); */
+}
+
+p {
+    font-size: 20px;
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
 }
 
 #gameboard {
@@ -23,7 +31,8 @@ body {
 .square {
     width: 100px;
     height: 100px;
-    background-color: white;
+    background-image: linear-gradient(to top, #9be15d 0%, #00e3ae 100%);
+    /* background: radial-gradient(40% 50%, #FAECD5, #CAE4D8); */
     border: solid 2px black;
     box-sizing: border-box;
     display: flex;
@@ -47,7 +56,7 @@ body {
     transform: rotate(45deg);
 }
 
-.cross:before,.cross:after  {
+.cross:before, .cross:after {
     content: "";
     position: absolute;
     background-color: red;
